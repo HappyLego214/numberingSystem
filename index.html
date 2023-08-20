@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number System Test</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <nav>
+                <ul>
+                    <li>Numbers Converter</li>
+                    <li>Test Generator</li>
+                    <li>Quick Cheatsheet</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="converter">
+            <div class="binary-tab">
+                <div class="top-content">
+                    <h2>Binary Number System</h2>
+                    <input type="text" class="binaryInput" name="binaryNumber" pattern="^[0-1]+$">
+                    <label for="binaryNumber">Enter Binary Number</label>
+                    <button type="button" id="binaryConvert">Convert</button>
+                </div>
+            </div>
+            <div class="decimal-tab">
+                <div class="top-content">
+                    <h2>Decimal Number System</h2>
+                    <input type="text" class="decimalInput" name="decimalNumber" pattern="^[0-9]+$">
+                    <label for="decimalNumber">Enter Decimal Number</label>
+                    <button type="button" id="decimalConvert">Convert</button>
+                </div>
+            </div>
+            <div class="hexadecimal-tab">
+                <div class="top-content">
+                    <h2>Hexadecimal Number System</h2>
+                    <input type="text" class="hexaInput" name="hexNumber" pattern="^[0-9a-fA-F]+$">
+                    <label for="hexNumber">Enter Hexadecimal Number</label>
+                    <button type="button" id="hexaConvert">Convert</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+
+</html>

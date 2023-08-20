@@ -1,0 +1,96 @@
+div {
+    border: 1px solid black;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+.main-container {
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    min-height: 100dvh;
+    min-width: fit-content;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.header ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    font-size: larger;
+    gap: 250px;
+    margin: 0;
+    padding: 0;
+}
+
+.header li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 250px;
+    height: 70px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+}
+
+.converter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.binary-tab {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.decimal-tab {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.hexadecimal-tab {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.top-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    gap: 10px;
+}
+
+.top-content h2 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.top-content input {
+    border: 1px solid black;
+    height: 30px;
+    width: 80%;
+}
+
+.top-content input:invalid {
+    background-color: lightpink;
+}
+
+.top-content button {
+    padding: 10px 25px 10px 25px;
+}
+
+
