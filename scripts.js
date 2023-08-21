@@ -55,18 +55,18 @@ function binaryToHex(binaryArray) {
     let hexaArray = [];
     binaryArray.reverse();
     do {
-        if(binaryArray.length > 3) {
-            let partition = binaryArray.splice(0,4).reverse().join("");
-            let index = hexBinaryArr.findIndex((item) => item == partition);
-            hexaArray.push(hexAlphaArr[index]);
-        } else {
+        let partition = binaryArray.splice(0,4).reverse().join("");
+        let index = hexBinaryArr.findIndex((item) => item == partition);
+        if(index == -1) {
             let sum = 0;
-            for(i = 0; i < binaryArray.length; i++)
+            let partArr = Array.from(partition).reverse();
+            for(i = 0; i < partArr.length; i++)
             {
-                sum += binaryArray[i] * Math.pow(2, i);
+                sum += partArr[i] * Math.pow(2, i);
             }
             hexaArray.push(sum);
-            break;
+        } else {
+        hexaArray.push(hexAlphaArr[index]);
         }
     } while (binaryArray.length != 0);
 
