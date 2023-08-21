@@ -34,6 +34,7 @@ hexaConvert.addEventListener("click", () => {
     if(hexaInput.validity.valid) {
         console.log("Valid!");
         hexaToDecimal(Array.from(hexaInput.value));
+        hexaToBinary(Array.from(hexaInput.value));
     } else {
         console.log("Invalid");
     }
@@ -58,7 +59,6 @@ function binaryToHex(binaryArray) {
             let partition = binaryArray.splice(0,4).reverse().join("");
             let index = hexBinaryArr.findIndex((item) => item == partition);
             hexaArray.push(hexAlphaArr[index]);
-            console.log('check-1');
         } else {
             let sum = 0;
             for(i = 0; i < binaryArray.length; i++)
@@ -91,7 +91,6 @@ function decimalToHex(decimalValue) {
     let decimal = decimalValue;
     do {
         let remainder = decimal % 16;
-        console.log(remainder);
         if (remainder > 9 ) {
             let index = hexNumericArr.findIndex((item) => item == remainder);
             hexaArray.push(hexAlphaArr[index]);
@@ -114,8 +113,8 @@ function hexaToDecimal(hexaValue) {
             sum += hexaValue[i] * Math.pow(16, i);
         } else {
             let index = hexAlphaArr.findIndex((item) => item == hexaValue[i]);
-            let hexNum = hexNumericArr[index];
-            sum += hexNum * Math.pow(16, i);      
+            let hexDecimal = hexNumericArr[index];
+            sum += hexDecimal * Math.pow(16, i);      
         }
     }
 
@@ -123,7 +122,22 @@ function hexaToDecimal(hexaValue) {
 }
 
 function hexaToBinary(hexaValue) {
-    
+    let binaryArray = [];
+    for(i = 0; i < hexaValue.length; i++) {
+        if(parseInt(hexaValue[i])) {
+            let decimal = parseInt(hexaValue[i]);
+            do {
+                binaryArray.push(decimal % 2);
+                decimal = Math.floor(decimal / 2);
+            } while (decimal > 0)
+        } else {
+            let index = hexAlphaArr.findIndex((item) => item == hexaValue[i]);
+            let hexBinary = hexBinaryArr[index];
+            binaryArray.push(hexBinary);
+        }
+    }
+
+    updateBinary(binaryArray.join(''));
 }
 
 function updateDecimal(decimalConverted) {
