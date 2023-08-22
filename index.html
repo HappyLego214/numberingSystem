@@ -13,13 +13,13 @@
         <div class="header">
             <nav>
                 <ul>
-                    <li>Numbers Converter</li>
-                    <li>Test Generator</li>
-                    <li>Quick Cheatsheet</li>
+                    <li id="converterTab">Numbers Converter</li>
+                    <li id="testGeneratorTab">Test Generator</li>
+                    <li id="cheatsheetTab">Quick Cheatsheet</li>
                 </ul>
             </nav>
         </div>
-        <div class="converter">
+        <div id="converter">
             <div class="binary-tab">
                 <div class="top-content">
                     <h2>Binary Number System</h2>
@@ -44,6 +44,36 @@
                     <button type="button" id="hexaConvert">Convert</button>
                 </div>
             </div>
+        </div>
+        <div id="test-generator">
+            <div class="test-options">
+                <div class="testSelect-container">
+                    <label for="testSelect">Select Test Type: </label>
+                    <select name="testSelect" id="testType">
+                        <option value="binary">Binary</option>
+                        <option value="decimal">Decimal</option>
+                        <option value="hexadecimal">Hexadecimal</option>
+                    </select>
+                </div>
+                <div class="testRandomize-container">
+                    <label for="randomizeTrigger">Randomize Test: </label>
+                    <input type="radio">
+                </div>
+                <div class="testQuantity-container">
+                    <label for="questionList">Question Quantity: </label>
+                    <select name="questionList" id="testQuantity">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="test-list"></div>
+            <div class="test-analytics"></div>
+        </div>
+        <div id="cheatsheet">
+
         </div>
         <div class="footer"></div>
     </div>

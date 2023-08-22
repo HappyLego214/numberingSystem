@@ -46,9 +46,60 @@ div {
     border-radius: 10px;
 }
 
-.converter {
-    display: grid;
+#converter {
+    display: none;
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+#test-generator {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 1fr;
+}
+
+.test-options {
+    display: grid;
+    margin: 10px 35px 10px 35px;
+    grid-template-rows: 80px 80px 80px;
+}
+
+.testSelect-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+}
+
+.testSelect-container label {
+    padding-right: 15px;
+    font-size: 18px;
+}
+
+.testSelect-container select {
+    font-size: 17px;
+}
+
+.testRandomize-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+}
+
+.testRandomize-container label {
+    padding-right: 15px;
+    font-size: 18px;
+}
+
+.testQuantity-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+}
+
+.testQuantity-container label {
+    padding-right: 15px;
+    font-size: 18px;
 }
 
 .binary-tab {

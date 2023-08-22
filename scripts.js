@@ -6,15 +6,33 @@ const binaryConvert = document.querySelector("#binaryConvert");
 const decimalConvert = document.querySelector("#decimalConvert");
 const hexaConvert = document.querySelector("#hexaConvert");
 
+const numberConverter = document.querySelector("#converterTab");
+const testGenerator = document.querySelector("#testGeneratorTab");
+const cheatsheet = document.querySelector("#cheatsheetTab");
+
 const hexAlphaArr = ["A","B","C","D","E","F"];
 const hexNumericArr = [10,11,12,13,14,15];
 const hexBinaryArr = [1010,1011,1100,1101,1110,1111];
 
+numberConverter.addEventListener("click", () => {
+    document.getElementById("converter").style.display = "grid";
+    document.getElementById("test-generator").style.display = "none";
+});
+
+testGenerator.addEventListener("click", () => {
+    document.getElementById("converter").style.display = "none";
+    document.getElementById("test-generator").style.display = "grid";
+});
+
+cheatsheet.addEventListener("click", () => {
+
+});
+
 binaryConvert.addEventListener("click", () => {
     if (binaryInput.validity.valid) {
         console.log("Valid!");
-        binaryToDecimal(Array.from(binaryInput.value));
-        binaryToHex(Array.from(binaryInput.value));
+        updateDecimal(binaryToDecimal(Array.from(binaryInput.value)));
+        updateHexa(binaryToHex(Array.from(binaryInput.value)));
     } else {
         console.log("Invalid");
     }
@@ -23,8 +41,8 @@ binaryConvert.addEventListener("click", () => {
 decimalConvert.addEventListener("click", () => {
     if(decimalInput.validity.valid) {
         console.log("Valid!");
-        decimalToBinary(decimalInput.value);
-        decimalToHex(decimalInput.value);
+        updateBinary(decimalToBinary(decimalInput.value));;
+        updateHexa(decimalToHex(decimalInput.value));
     } else {
         console.log("Invalid");
     }
@@ -33,8 +51,8 @@ decimalConvert.addEventListener("click", () => {
 hexaConvert.addEventListener("click", () => {
     if(hexaInput.validity.valid) {
         console.log("Valid!");
-        hexaToDecimal(Array.from(hexaInput.value));
-        hexaToBinary(Array.from(hexaInput.value));
+        updateDecimal(hexaToDecimal(Array.from(hexaInput.value)));
+        updateBinary(hexaToBinary(Array.from(hexaInput.value)));
     } else {
         console.log("Invalid");
     }
@@ -47,8 +65,7 @@ function binaryToDecimal(binaryArray) {
     {
         sum += binaryArray[i] * Math.pow(2, i);
     }
-    
-    updateDecimal(sum);
+    return(sum);
 }
 
 function binaryToHex(binaryArray) {
@@ -71,7 +88,7 @@ function binaryToHex(binaryArray) {
     } while (binaryArray.length != 0);
 
 
-    updateHexa(hexaArray.reverse().join(''));
+    return(hexaArray.reverse().join(''));
 }
 
 function decimalToBinary(decimalValue) {
@@ -83,7 +100,7 @@ function decimalToBinary(decimalValue) {
     } while (decimal > 0)
 
     binaryArray.reverse();
-    updateBinary(Number(binaryArray.join('')));
+    return(Number(binaryArray.join('')));
 }
 
 function decimalToHex(decimalValue) {
@@ -102,7 +119,7 @@ function decimalToHex(decimalValue) {
     } while (decimal > 0)
 
     hexaArray.reverse();
-    updateHexa(hexaArray.join(''));
+    return(hexaArray.join(''));
 }
 
 function hexaToDecimal(hexaValue) {
@@ -118,7 +135,7 @@ function hexaToDecimal(hexaValue) {
         }
     }
 
-    updateDecimal(sum);
+    return(sum);
 }
 
 function hexaToBinary(hexaValue) {
@@ -137,7 +154,7 @@ function hexaToBinary(hexaValue) {
         }
     }
 
-    updateBinary(binaryArray.join(''));
+    return(binaryArray.join(''));
 }
 
 function updateDecimal(decimalConverted) {
