@@ -54,12 +54,14 @@ div {
 #test-generator {
     display: grid;
     grid-template-columns: 1fr 2.5fr 1fr;
+    min-height: 500px;
+    max-height: calc(100dvh - 200px);
 }
 
 .test-options {
     display: grid;
     margin: 10px 35px 10px 35px;
-    grid-template-rows: 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px 80px;
 }
 
 .testSelect-container {
@@ -100,6 +102,38 @@ div {
 .testQuantity-container label {
     padding-right: 15px;
     font-size: 18px;
+}
+
+.generateTest-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.generateTest-container button {
+    height: 50px;
+    width: 200px;
+}
+
+.test-menu {
+    display: grid;
+    overflow-y: auto;
+    grid-auto-rows: 300px;
+}
+
+.question-card {
+    display: grid;
+    grid-template-rows: 40px 100px; 
+    border-radius: 20px;
+    padding: 25px;
+    margin: 25px;
+}
+
+.numberLine {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: smaller;
 }
 
 .binary-tab {

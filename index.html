@@ -57,7 +57,7 @@
                 </div>
                 <div class="testRandomize-container">
                     <label for="randomizeTrigger">Randomize Test: </label>
-                    <input type="radio">
+                    <input type="checkbox" id="randomizeTrigger">
                 </div>
                 <div class="testQuantity-container">
                     <label for="questionList">Question Quantity: </label>
@@ -67,9 +67,11 @@
                         <option value="15">15</option>
                     </select>
                 </div>
+                <div class="generateTest-container">
+                    <button class="generateTest">Generate Test</button>
+                </div>
             </div>
-
-            <div class="test-list"></div>
+            <div class="test-menu"></div>
             <div class="test-analytics"></div>
         </div>
         <div id="cheatsheet">

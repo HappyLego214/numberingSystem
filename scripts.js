@@ -1,18 +1,36 @@
-const binaryInput = document.querySelector(".binaryInput");
-const decimalInput = document.querySelector(".decimalInput");
-const hexaInput = document.querySelector(".hexaInput");
-
-const binaryConvert = document.querySelector("#binaryConvert");
-const decimalConvert = document.querySelector("#decimalConvert");
-const hexaConvert = document.querySelector("#hexaConvert");
+// Header Section
 
 const numberConverter = document.querySelector("#converterTab");
 const testGenerator = document.querySelector("#testGeneratorTab");
 const cheatsheet = document.querySelector("#cheatsheetTab");
 
+// Number Converter - Inputs
+
+const binaryInput = document.querySelector(".binaryInput");
+const decimalInput = document.querySelector(".decimalInput");
+const hexaInput = document.querySelector(".hexaInput");
+
+// Number Converter - Buttons
+
+const binaryConvert = document.querySelector("#binaryConvert");
+const decimalConvert = document.querySelector("#decimalConvert");
+const hexaConvert = document.querySelector("#hexaConvert");
+
+// Number Converter - Hex Arrays
+
 const hexAlphaArr = ["A","B","C","D","E","F"];
 const hexNumericArr = [10,11,12,13,14,15];
 const hexBinaryArr = [1010,1011,1100,1101,1110,1111];
+
+// Test Generator - Options
+
+const generateTest = document.querySelector(".generateTest");
+const randomizeTrigger = document.querySelector("#randomizeTrigger");
+
+// Test Generator - Test Menu
+
+const testMenu = document.querySelector(".test-menu");
+
 
 numberConverter.addEventListener("click", () => {
     document.getElementById("converter").style.display = "grid";
@@ -27,6 +45,32 @@ testGenerator.addEventListener("click", () => {
 cheatsheet.addEventListener("click", () => {
 
 });
+
+generateTest.addEventListener("click", () => {
+    let questionQuantity = document.getElementById("testQuantity").value;
+    let questionType = document.getElementById("testType").value;
+
+    clearTest();
+
+    console.log(questionType);
+
+    if (randomizeTrigger.checked) {
+        for(i = 0; i < questionQuantity; i++) {
+            createTestCard(randomizeItem(), i + 1)
+        }
+    } else {
+        for(i = 0; i < questionQuantity; i++) {
+            createTestCard(questionType, i + 1)
+        }
+    }
+    
+});
+
+function randomizeItem() {
+    const numberTypes = ["binary", "decimal", "hexidecimal"];
+    console.log(numberTypes[Math.floor(Math.random() * numberTypes.length)]);
+    // return numberTypes[Math.floor(Math.random() * numberTypes.length)];
+}
 
 binaryConvert.addEventListener("click", () => {
     if (binaryInput.validity.valid) {
@@ -169,3 +213,56 @@ function updateHexa(hexaConverted) {
     hexaInput.value = hexaConverted;
 }
 
+function clearTest() {
+    let tests = document.querySelectorAll(".question-card");
+    tests.forEach(test => {
+        test.remove();
+    })
+}
+
+function createTestCard(type, questionNumber) {
+    const questionCard = document.createElement("div");
+    questionCard.className = "question-card";
+    questionCard.dataset.number = questionNumber;
+    testMenu.append(questionCard);   
+
+    const numberLine = document.createElement("div");
+    const questionLine = document.createElement("div");
+    const answerLine = document.createElement("div");
+
+    numberLine.className = "numberLine";
+    questionLine.className = "questionLine";
+    answerLine.className = "answerLine";
+
+    questionCard.append(numberLine);
+    questionCard.append(questionLine);
+    questionCard.append(answerLine);
+
+    const numberItem = document.createElement("h2");
+    numberItem.textContent = "Question " + questionCard.dataset.number;
+    numberLine.append(numberItem);
+
+    if (type === "binary") {
+        console.log("check");
+        createBinaryQuestion(questionCard);
+    } else if (type === "hexadecimal") {
+
+    } else if (type === "decimal") {
+
+    }
+}
+
+function createBinaryQuestion(parentElement, ) {
+    let questionTask = Math.floor(Math.random * 1000);
+
+    const questionItem = document.createElement("p");
+    // numberItem.textContent = "What is "  
+}
+
+function createDecimalQuestion(parentElement) {
+
+}
+
+function createHexaQuestion(parentElement) {
+    
+}
