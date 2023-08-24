@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="main-container">
+
         <div class="header">
             <nav>
                 <ul>
@@ -19,6 +20,7 @@
                 </ul>
             </nav>
         </div>
+
         <div id="converter">
             <div class="binary-tab">
                 <div class="top-content">
@@ -45,15 +47,28 @@
                 </div>
             </div>
         </div>
+
         <div id="test-generator">
             <div class="test-options">
                 <div class="testSelect-container">
-                    <label for="testSelect">Select Test Type: </label>
-                    <select name="testSelect" id="testType">
-                        <option value="binary">Binary</option>
-                        <option value="decimal">Decimal</option>
-                        <option value="hexadecimal">Hexadecimal</option>
-                    </select>
+
+                    <div class="test-From">
+                        <label for="testConvertFrom">Convert From: </label>
+                        <select name="testConvertFrom" id="testConvertFrom">
+                            <option value="binary">Binary</option>
+                            <option value="decimal">Decimal</option>
+                            <option value="hexadecimal">Hexadecimal</option>
+                        </select>
+                    </div>
+                    <div class="test-To">
+                        <label for="testConvertTo">Convert To: </label>
+                        <select name="testConvertTo" id="testConvertTo">
+                            <option value="binary">Binary</option>
+                            <option value="decimal">Decimal</option>
+                            <option value="hexadecimal">Hexadecimal</option>
+                        </select>
+                    </div>  
+                    
                 </div>
                 <div class="testRandomize-container">
                     <label for="randomizeTrigger">Randomize Test: </label>
@@ -74,9 +89,11 @@
             <div class="test-menu"></div>
             <div class="test-analytics"></div>
         </div>
+
         <div id="cheatsheet">
 
         </div>
+
         <div class="footer"></div>
     </div>
 </body>

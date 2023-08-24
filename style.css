@@ -1,5 +1,5 @@
 div {
-    border: 1px solid black;
+    border: 01px solid black;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
@@ -61,14 +61,12 @@ div {
 .test-options {
     display: grid;
     margin: 10px 35px 10px 35px;
-    grid-template-rows: 80px 80px 80px 80px;
+    grid-auto-rows: 80px;
 }
 
 .testSelect-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .testSelect-container label {
@@ -78,6 +76,10 @@ div {
 
 .testSelect-container select {
     font-size: 17px;
+}
+
+.testSelect-container select:invalid {
+    background-color: lightpink;
 }
 
 .testRandomize-container {

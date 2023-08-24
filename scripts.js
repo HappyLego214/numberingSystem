@@ -48,28 +48,42 @@ cheatsheet.addEventListener("click", () => {
 
 generateTest.addEventListener("click", () => {
     let questionQuantity = document.getElementById("testQuantity").value;
-    let questionType = document.getElementById("testType").value;
+    let questionConvertFrom = document.getElementById("testConvertFrom").value;
+    let questionConvertTo = document.getElementById("testConvertTo").value;
 
     clearTest();
 
-    console.log(questionType);
-
     if (randomizeTrigger.checked) {
         for(i = 0; i < questionQuantity; i++) {
-            createTestCard(randomizeItem(), i + 1)
+
+            questionConvertFrom = randomizeItem();
+            questionConvertTo = randomizeItem(questionConvertFrom);
+
+            createTestCard(questionConvertFrom, questionConvertTo, i + 1)
         }
     } else {
-        for(i = 0; i < questionQuantity; i++) {
-            createTestCard(questionType, i + 1)
+        if (questionConvertFrom == questionConvertTo) {
+            console.log("Error Cannot Convert Similiar Number Systems");
+            // FUTURE WORK !!;
+        } else {
+            for(i = 0; i < questionQuantity; i++) {
+                createTestCard(questionConvertFrom, questionConvertTo, i + 1)
+            }
         }
+
     }
     
 });
 
-function randomizeItem() {
-    const numberTypes = ["binary", "decimal", "hexidecimal"];
-    console.log(numberTypes[Math.floor(Math.random() * numberTypes.length)]);
-    // return numberTypes[Math.floor(Math.random() * numberTypes.length)];
+function randomizeItem(exclusion) {
+    let numberTypes = ["binary", "decimal", "hexadecimal"];
+
+    if (exclusion != undefined) {
+        numberTypes.splice(numberTypes.indexOf(exclusion), 1);
+    }
+
+    let randomizedItem = numberTypes[Math.floor(Math.random() * numberTypes.length)];
+    return randomizedItem;
 }
 
 binaryConvert.addEventListener("click", () => {
@@ -220,7 +234,7 @@ function clearTest() {
     })
 }
 
-function createTestCard(type, questionNumber) {
+function createTestCard(convertFrom, convertTo, questionNumber) {
     const questionCard = document.createElement("div");
     questionCard.className = "question-card";
     questionCard.dataset.number = questionNumber;
@@ -242,21 +256,26 @@ function createTestCard(type, questionNumber) {
     numberItem.textContent = "Question " + questionCard.dataset.number;
     numberLine.append(numberItem);
 
-    if (type === "binary") {
-        console.log("check");
-        createBinaryQuestion(questionCard);
-    } else if (type === "hexadecimal") {
+    const questionItem = document.createElement("p");
+    questionItem.textContent = "Solve " + convertFrom + " to " + convertTo;
+    questionLine.append(questionItem);
 
-    } else if (type === "decimal") {
+    // if (type === "binary") {
+    //     console.log("check");
+    //     createBinaryQuestion(questionLine);
+    // } else if (type === "hexadecimal") {
 
-    }
+    // } else if (type === "decimal") {
+
+    // }
 }
 
-function createBinaryQuestion(parentElement, ) {
-    let questionTask = Math.floor(Math.random * 1000);
+function createBinaryQuestion(parentElement) {
+    let questionTask = Math.floor(Math.random * 200);
 
     const questionItem = document.createElement("p");
-    // numberItem.textContent = "What is "  
+    questionItem.textContent = "Solve the "
+    parentElement.append(questionItem)
 }
 
 function createDecimalQuestion(parentElement) {
