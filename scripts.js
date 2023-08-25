@@ -256,32 +256,41 @@ function createTestCard(convertFrom, convertTo, questionNumber) {
     numberItem.textContent = "Question " + questionCard.dataset.number;
     numberLine.append(numberItem);
 
+    let problemNumber = 0;
+
+    if (convertFrom === "binary") {
+        problemNumber = decimalToBinary(itemNumberRange());
+    } else if (convertFrom === "decimal") {
+        problemNumber = itemNumberRange();
+    } else if (convertFrom === "hexadecimal") {
+        problemNumber = decimalToHex(itemNumberRange());
+
+    }
+
     const questionItem = document.createElement("p");
-    questionItem.textContent = "Solve " + convertFrom + " to " + convertTo;
+    questionItem.dataset.convertFrom = convertFrom;
+    questionItem.dataset.convertTo = convertTo;
+    questionItem.dataset.itemValue = problemNumber;
+
+    questionItem.textContent = "Convert " + problemNumber + " in " + convertFrom + " to " + convertTo + ".";
     questionLine.append(questionItem);
 
-    // if (type === "binary") {
-    //     console.log("check");
-    //     createBinaryQuestion(questionLine);
-    // } else if (type === "hexadecimal") {
-
-    // } else if (type === "decimal") {
-
-    // }
-}
-
-function createBinaryQuestion(parentElement) {
-    let questionTask = Math.floor(Math.random * 200);
-
-    const questionItem = document.createElement("p");
-    questionItem.textContent = "Solve the "
-    parentElement.append(questionItem)
-}
-
-function createDecimalQuestion(parentElement) {
+    const answerArea = document.createElement("input");
+    answerLine.append(answerArea);
 
 }
 
-function createHexaQuestion(parentElement) {
-    
+function itemNumberRange() {
+    let questionTask = 0;
+    let taskRandomRange = Math.floor(Math.random() * 3);
+
+    if (taskRandomRange = 0) {
+        questionTask = Math.floor(Math.random() * (99 - 0 + 1) + 1);
+    } else if (taskRandomRange = 1) {
+        questionTask = Math.floor(Math.random() * (499 - 100 + 1) + 100);
+    } else if (taskRandomRange = 2) {
+        questionTask = Math.floor(Math.random() * (1000 - 500 + 1) + 500);
+    }
+
+    return questionTask;
 }

@@ -53,7 +53,7 @@ div {
 
 #test-generator {
     display: grid;
-    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-columns: 380px 2.5fr 1fr;
     min-height: 500px;
     max-height: calc(100dvh - 200px);
 }
@@ -120,15 +120,26 @@ div {
 .test-menu {
     display: grid;
     overflow-y: auto;
-    grid-auto-rows: 300px;
+    grid-auto-rows: 250px;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
 .question-card {
     display: grid;
-    grid-template-rows: 40px 100px; 
+    grid-template-rows: 40px 50px; 
     border-radius: 20px;
     padding: 25px;
     margin: 25px;
+}
+
+.question-card p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.answerLine {
+    display: flex;
+    align-items: center;
 }
 
 .numberLine {
