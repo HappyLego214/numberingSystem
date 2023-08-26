@@ -67,10 +67,7 @@ generateTest.addEventListener("click", () => {
             createTestCard(questionConvertFrom, questionConvertTo, i + 1)
         }
     } else {
-        if (questionConvertFrom == questionConvertTo) {
-            console.log("Error Cannot Convert Similiar Number Systems");
-            // FUTURE WORK !!;
-        } else {
+        if (questionConvertFrom != questionConvertTo) {
             for(i = 0; i < questionQuantity; i++) {
                 createTestCard(questionConvertFrom, questionConvertTo, i + 1)
             }
@@ -104,8 +101,6 @@ checkTest.addEventListener("click", () => {
             solution = hexaToDecimal(Array.from(given));
         }
 
-        console.log(solution);
-
         if (solution == answer.value) {
             answer.style.backgroundColor = "lightgreen"
         } else {
@@ -117,6 +112,8 @@ checkTest.addEventListener("click", () => {
 function updateTestTitle(convertFrom, convertTo, randomize) {
     if(randomize) {
         testTitle.textContent = "Randomized Test";
+    } else if (convertFrom == convertTo) {
+        testTitle.textContent = "Error: Cannot Convert Similiar Number Systems";
     } else {
         let capitalizeFrom = convertFrom.charAt(0).toUpperCase() + convertFrom.slice(1);
         let capitalizeTo = convertTo.charAt(0).toUpperCase() + convertTo.slice(1);
