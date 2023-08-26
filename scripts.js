@@ -25,12 +25,17 @@ const hexBinaryArr = [1010,1011,1100,1101,1110,1111];
 // Test Generator - Options
 
 const generateTest = document.querySelector(".generateTest");
+const checkTest = document.querySelector(".checkTest");
 const randomizeTrigger = document.querySelector("#randomizeTrigger");
 
 // Test Generator - Test Menu
 
 const testMenu = document.querySelector(".test-menu");
+const testTitle = document.querySelector(".test-title");
 
+// Number Type Array
+
+const numberTypes = ["binary", "decimal", "hexadecimal"];
 
 numberConverter.addEventListener("click", () => {
     document.getElementById("converter").style.display = "grid";
@@ -70,19 +75,64 @@ generateTest.addEventListener("click", () => {
                 createTestCard(questionConvertFrom, questionConvertTo, i + 1)
             }
         }
-
     }
+
+    updateTestTitle(questionConvertFrom, questionConvertTo, randomizeTrigger.checked)
     
 });
 
+checkTest.addEventListener("click", () => {
+    testMenu.childNodes.forEach((item) => {
+        let from = item.firstChild.lastChild.dataset.from;
+        let to = item.firstChild.lastChild.dataset.to;
+        
+        let answer = item.lastChild.firstChild;
+        let given = item.firstChild.lastChild.dataset.problem;
+        let solution;
+
+        if(from == "binary" && to == "decimal") {
+            solution = binaryToDecimal(Array.from(given));
+        } else if (from == "binary" && to == "hexadecimal") {
+            solution = binaryToHex(Array.from(given));
+        } else if (from == "decimal" && to == "binary") {
+            solution = decimalToBinary(given);
+        } else if (from == "decimal" && to == "hexadecimal") {
+            solution = decimalToHexa(given);
+        } else if (from == "hexadecimal" && to == "binary") {
+            solution = hexaToBinary(Array.from(given));
+        } else if (from == "hexadecimal" && to == "decimal") {
+            solution = hexaToDecimal(Array.from(given));
+        }
+
+        console.log(solution);
+
+        if (solution == answer.value) {
+            answer.style.backgroundColor = "lightgreen"
+        } else {
+            answer.style.backgroundColor = "lightpink"
+        }
+    });
+}); 
+
+function updateTestTitle(convertFrom, convertTo, randomize) {
+    if(randomize) {
+        testTitle.textContent = "Randomized Test";
+    } else {
+        let capitalizeFrom = convertFrom.charAt(0).toUpperCase() + convertFrom.slice(1);
+        let capitalizeTo = convertTo.charAt(0).toUpperCase() + convertTo.slice(1);
+
+        testTitle.textContent = capitalizeFrom + " to " + capitalizeTo;
+    }
+}
+
 function randomizeItem(exclusion) {
-    let numberTypes = ["binary", "decimal", "hexadecimal"];
+    let randomArray = ["binary", "decimal", "hexadecimal"];
 
     if (exclusion != undefined) {
-        numberTypes.splice(numberTypes.indexOf(exclusion), 1);
+        randomArray.splice(randomArray.indexOf(exclusion), 1);
     }
 
-    let randomizedItem = numberTypes[Math.floor(Math.random() * numberTypes.length)];
+    let randomizedItem = randomArray[Math.floor(Math.random() * randomArray.length)];
     return randomizedItem;
 }
 
@@ -100,7 +150,7 @@ decimalConvert.addEventListener("click", () => {
     if(decimalInput.validity.valid) {
         console.log("Valid!");
         updateBinary(decimalToBinary(decimalInput.value));;
-        updateHexa(decimalToHex(decimalInput.value));
+        updateHexa(decimalToHexa(decimalInput.value));
     } else {
         console.log("Invalid");
     }
@@ -161,7 +211,7 @@ function decimalToBinary(decimalValue) {
     return(Number(binaryArray.join('')));
 }
 
-function decimalToHex(decimalValue) {
+function decimalToHexa(decimalValue) {
     let hexaArray = [];
     let decimal = decimalValue;
     do {
@@ -240,21 +290,18 @@ function createTestCard(convertFrom, convertTo, questionNumber) {
     questionCard.dataset.number = questionNumber;
     testMenu.append(questionCard);   
 
-    const numberLine = document.createElement("div");
     const questionLine = document.createElement("div");
     const answerLine = document.createElement("div");
 
-    numberLine.className = "numberLine";
     questionLine.className = "questionLine";
     answerLine.className = "answerLine";
 
-    questionCard.append(numberLine);
     questionCard.append(questionLine);
     questionCard.append(answerLine);
 
     const numberItem = document.createElement("h2");
     numberItem.textContent = "Question " + questionCard.dataset.number;
-    numberLine.append(numberItem);
+    questionLine.append(numberItem);
 
     let problemNumber = 0;
 
@@ -263,19 +310,19 @@ function createTestCard(convertFrom, convertTo, questionNumber) {
     } else if (convertFrom === "decimal") {
         problemNumber = itemNumberRange();
     } else if (convertFrom === "hexadecimal") {
-        problemNumber = decimalToHex(itemNumberRange());
-
+        problemNumber = decimalToHexa(itemNumberRange());
     }
 
     const questionItem = document.createElement("p");
-    questionItem.dataset.convertFrom = convertFrom;
-    questionItem.dataset.convertTo = convertTo;
-    questionItem.dataset.itemValue = problemNumber;
+    questionItem.dataset.from = convertFrom;
+    questionItem.dataset.to = convertTo;
+    questionItem.dataset.problem = problemNumber;
 
     questionItem.textContent = "Convert " + problemNumber + " in " + convertFrom + " to " + convertTo + ".";
     questionLine.append(questionItem);
 
     const answerArea = document.createElement("input");
+    answerArea.className = "user-answer";
     answerLine.append(answerArea);
 
 }

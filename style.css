@@ -55,7 +55,7 @@ div {
     display: grid;
     grid-template-columns: 380px 2.5fr 1fr;
     min-height: 500px;
-    max-height: calc(100dvh - 200px);
+    max-height: calc(100dvh - 2.5fr);
 }
 
 .test-options {
@@ -117,16 +117,38 @@ div {
     width: 200px;
 }
 
+.checkTest-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkTest-container button {
+    height: 50px;
+    width: 200px;
+}
+
+.test-menu-container {
+    display: grid;
+    grid-template-rows: 50px 1fr;
+}
+
+.test-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .test-menu {
     display: grid;
-    overflow-y: auto;
-    grid-auto-rows: 250px;
+    overflow-y: auto; 
+    grid-auto-rows: 230px;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
 .question-card {
     display: grid;
-    grid-template-rows: 40px 50px; 
+    grid-template-rows: 80px 50px; 
     border-radius: 20px;
     padding: 25px;
     margin: 25px;
@@ -141,6 +163,11 @@ div {
     display: flex;
     align-items: center;
 }
+
+.user-answer {
+    background-color: white;
+}
+
 
 .numberLine {
     display: flex;
